@@ -6,4 +6,4 @@
 
 2.Course
 
-3.Registration
+3.StudentRegistration
