@@ -1,3 +1,15 @@
 a refresh button to refresh the page
 
 https://angular.io/guide/quickstart
+
+https://stackoverflow.com/questions/37649164/how-to-add-bootstrap-to-an-angular-cli-project
+
+https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode
+
+http://eventuate.io/whyeventsourcing.html
+
+http://microservices.io/patterns/data/event-sourcing.html
+
+https://github.com/mspnp/architecture-center/blob/master/docs/patterns/event-sourcing.md
+
+customer,company,

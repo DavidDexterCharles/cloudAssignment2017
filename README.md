@@ -2,8 +2,8 @@
 
 ## Entities
 
-1.Student
+1.Transaction
 
-2.Course
+2.Bank
 
-3.StudentCourse
+3.Customer
