@@ -13,3 +13,11 @@ http://microservices.io/patterns/data/event-sourcing.html
 https://github.com/mspnp/architecture-center/blob/master/docs/patterns/event-sourcing.md
 
 customer,company,
+
+https://community.c9.io/t/anyone-using-c9-to-do-the-angular2-project/7078/12
+
+https://github.com/angular/angular-cli/issues/6349
+"ng serve --host 0.0.0.0 --disable-host-check --port=8081",
+
+https://www.confluent.io/blog/turning-the-database-inside-out-with-apache-samza/?utm_content=buffer01510&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+materialized view
