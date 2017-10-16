@@ -17,10 +17,11 @@ def after_request(response):
 
 @app.route('/')
 def index():
-    try:
-        return requests.get('https://github.com/DavidDexterCharles?tab=repositories').content#, headers=headers).content
-    except:
-        return "Welcome To JND(Rapid API Development with JSONERD Automation)"
+    return "apples"
+    # try:
+    #     return requests.get('https://github.com/DavidDexterCharles?tab=repositories').content#, headers=headers).content
+    # except:
+    #     return "Welcome To JND(Rapid API Development with JSONERD Automation)"
 
 
 

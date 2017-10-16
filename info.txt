@@ -21,3 +21,12 @@ https://github.com/angular/angular-cli/issues/6349
 
 https://www.confluent.io/blog/turning-the-database-inside-out-with-apache-samza/?utm_content=buffer01510&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 materialized view
+
+https://coursetro.com/posts/code/61/Angular-4-Services-Tutorial
+Angular 4 Services Tutorial
+
+https://stackoverflow.com/questions/34644891/viewing-a-flask-app-in-the-cloud9-test-browser
+run flask on cloud9ide
+
+https://community.c9.io/t/anyone-using-c9-to-do-the-angular2-project/7078/16
+attempting to run ang2 project
