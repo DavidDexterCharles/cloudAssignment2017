@@ -30,3 +30,10 @@ run flask on cloud9ide
 
 https://community.c9.io/t/anyone-using-c9-to-do-the-angular2-project/7078/16
 attempting to run ang2 project
+
+
+https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services
+generating components etc in angular2
+
+https://angular.io/tutorial/toh-pt2
+angular tour of heroes 
