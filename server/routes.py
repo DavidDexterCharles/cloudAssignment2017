@@ -1,9 +1,10 @@
 import jndcontrollers
+import simplejson as json
 from app import app,  socketio, render_template
 from flask import Flask,request, jsonify, make_response
 import requests
 import maincontroller
-
+headers = {'Content-Type': 'application/json'}
 #token_required = jndcontrollers.token_required
 jnd = maincontroller.MainController()
 
@@ -39,9 +40,13 @@ def messageRecived():
   print 'message was received!!!' 
 
 @socketio.on( 'my event' )
-def handle_my_custom_event( json ):
-  print 'recived my event: ' + str( json )
-  socketio.emit( 'my response', json, callback=messageRecived )
+def handle_my_custom_event( data ):
+    print 'recived my event: ' + json.dumps(data )
+    data1 = json.dumps(data )
+    data2= requests.post('http://localhost:8082/transaction', data1, headers=headers).content
+    
+    #   print json.loads(data)
+    socketio.emit( 'my response', data, callback=messageRecived )
 
 
 

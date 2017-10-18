@@ -30,7 +30,7 @@ class WriteController(object):
         d['RowKey']=d['transtime']
         transaction = d
         table_service.insert_entity('evenstore', transaction)
-
+        # return "fish"
         return json.dumps(d)
 
 class ReadController(object):

@@ -125,8 +125,8 @@
             <thead>
               <tr>
                 <th>Customer</th>
-                <th>Balance</th>
-                <th>Bank Branch </th>
+                <th>Bank Branch</th>
+                <th>Balance </th>
               </tr>
             </thead>
             <tbody class="transactions">
@@ -148,7 +148,7 @@
                 <td>Rambo</td>
 
               </tr>
-              <div id="socktest"></div>
+              <div class="socktest"></div>
             </tbody>
           </table>
 
@@ -178,19 +178,16 @@
           var amount = $("#sel4 option:selected").text();
           var transtime = event.timeStamp;
           var data = { "user": user, "trans": trans, "bank": bank, "amount": amount };
-          socket.emit('my event', {
-            user_name : "user",
-            message : "bank"
-          } )
+          socket.emit('my event', data )
       });
     })
 
     // capture message
-    socket.on('my response', function (msg) {
-      console.log(msg)
-      if (typeof msg.user_name !== 'undefined') {
+    socket.on('my response', function (data) {
+      console.log(data)
+      if (typeof data.user !== 'undefined') {
         // $('h1').remove()
-        $('div.socktest').append('<tr> <td>Sock</td> <td>Sock</td> <td>Sock</td> </tr>')
+        $('div.socktest').append('<tr> <td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td> </tr>')
       }
     })
     })
