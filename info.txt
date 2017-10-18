@@ -37,3 +37,9 @@ generating components etc in angular2
 
 https://angular.io/tutorial/toh-pt2
 angular tour of heroes 
+
+https://github.com/Azure/azure-cosmosdb-python/tree/master/azure-cosmosdb-table
+pip install azure
+
+
+https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
