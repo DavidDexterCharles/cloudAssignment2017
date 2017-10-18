@@ -13,8 +13,8 @@ headers = {'Content-Type': 'application/vnd.api+json'}
 
 table_service = TableService(account_name='comp69052017a216', account_key='6pWXbN/82hhsCKEcHEXdl0j5mxFcK6+lple/wYU29Jcb+kB55N/gAUuAd2PfL3mx67WxzJ8QxqhXbV5QdBG7iw==')
 
-table_service.create_table('tasktable') 
-
+table_service.create_table('evenstore') 
+table_service.create_table('materializedview') 
 
 
 class UserJndController(object):
@@ -26,4 +26,38 @@ class WriteController(object):
         data = json.dumps(request.get_json())
         d = json.loads(data)
         d['transtime']=str(datetime.datetime.utcnow())
+        d['PartitionKey']=d['user']
+        d['RowKey']=d['transtime']
+        transaction = d
+        table_service.insert_entity('evenstore', transaction)
+
         return json.dumps(d)
+
+class ReadController(object):
+   
+    def getTransaction(self,request):
+        data = json.dumps(request.get_json())
+        d = json.loads(data)
+        transactions = table_service.query_entities('evenstore', filter=" bank eq '"+d['bank']+"' and PartitionKey eq '"+d['user']+"'") # returns a set of trasactions fro a particular user and bank
+        self.doreplay(transactions)
+        return "app"
+
+    def doreplay(self,transactions): # replay and update user information for respective bank only in the materialized view
+        i=0
+        for t in transactions:
+            if i==0:
+                amt = 0
+                user = t.user
+                bank = t.bank
+                i=1
+            if t.trans=="Withdraw": 
+                amt-=int(t.amount)
+            if t.trans=="Deposit": 
+                amt+=int(t.amount)
+            print t.user,t.bank,t.transtime,t.trans, t.amount ,amt
+        m= json.loads(json.dumps({'customer' : user,'bank':bank,'balance':str(amt)}))
+        m['PartitionKey']=str(user)
+        m['RowKey']=str(bank)
+        table_service.insert_or_replace_entity('materializedview', m)
+        
+          

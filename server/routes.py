@@ -31,7 +31,9 @@ def getonetrans():
     if request.method == 'POST':
         # print request.data
         # return request.data
-        return jnd.createTransaction(request)
+        result=jnd.createTransaction(request)
+        val = jnd.getTransaction(request)
+        return result
     
 
 

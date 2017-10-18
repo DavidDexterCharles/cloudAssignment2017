@@ -43,3 +43,7 @@ pip install azure
 
 
 https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
+
+
+
+https://stackoverflow.com/questions/29877256/does-tablequery-support-orderby
