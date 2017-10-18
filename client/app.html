@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -7,98 +8,101 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> -->
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $("button").click(function(event){
-        
-            // $.get("http://127.0.0.1:8082/transaction", function(data, status){
-            //     console.log(data);
-            //     //  alert("Data: " + data[0].name );
-            // });
-            //http://api.jquery.com/event.timestamp/
-            var user = $("#sel1 option:selected").text();
-            var trans = $("#sel2 option:selected").text();
-            var bank = $("#sel3 option:selected").text();
-            var amount = $("#sel4 option:selected").text();
-            var transtime=event.timeStamp;
-            var data = {"user":user,"trans":trans,"bank":bank,"amount":amount};
-            $.ajax({
-                type: 'POST',
-                contentType: 'application/json',
-                url: 'http://127.0.0.1:8082/transaction',
-                dataType : 'json',
-                data : JSON.stringify(data),
-                success : function(result) {
 
-               jQuery("#clash").html(result); 
-                console.log(result);
-                },error : function(result){
-                console.log(result);
-                }
-            });
-        });
-       
+<!-- <script>
+  $(document).ready(function () {
+    $("button").click(function (event) {
+
+      // $.get("http://127.0.0.1:8082/transaction", function(data, status){
+      //     console.log(data);
+      //     //  alert("Data: " + data[0].name );
+      // });
+      //http://api.jquery.com/event.timestamp/
+      var user = $("#sel1 option:selected").text();
+      var trans = $("#sel2 option:selected").text();
+      var bank = $("#sel3 option:selected").text();
+      var amount = $("#sel4 option:selected").text();
+      var transtime = event.timeStamp;
+      var data = { "user": user, "trans": trans, "bank": bank, "amount": amount };
+      $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: 'http://127.0.0.1:8082/transaction',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        success: function (result) {
+
+          jQuery("#clash").html(result);
+          console.log(result);
+        }, error: function (result) {
+          console.log(result);
+        }
+      });
     });
-</script>
 
-<!-- The content below is only a placeholder and can be replaced. -->
-<div class="container">
-  <div>
-    <h5>
-      ClA 2
-    </h5>
-  </div>
-  <div class="row">
-    <div class="col-md-4" style="background-color:rgba(142, 174, 198, 0.37);">
-  
-      <form class="form">
-        <div class="form-group">
-          <div class="row">
-            <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 5px">
-              <label for="sel1">User ID: </label>
-            </div>
-            <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
-              <select class="form-control " id="sel1">
+  });
+
+</script> -->
+
+<body>
+  <!-- The content below is only a placeholder and can be replaced. -->
+  <div class="container">
+    <div>
+      <h5>
+        ClA 2
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col-md-4" style="background-color:rgba(142, 174, 198, 0.37);">
+
+        <form  method="POST" class="form">
+          <div class="form-group">
+            <div class="row">
+              <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 5px">
+                <label for="sel1">User ID: </label>
+              </div>
+              <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
+                <select class="form-control " id="sel1">
                   <option id="u1">U1001</option>
                   <option id="u1">U2001</option>
                   <option id="u1">U3001</option>
                   <option id="u1">U4001</option>
               </select>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div style="background-color:rgba(147, 60, 131, 0.37);">
-              <label for="sel1">Trans ID: </label>
-            </div>
-            <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px">
-              <select class="form-control form-control-sm" id="sel2">
+            <div class="row">
+              <div style="background-color:rgba(147, 60, 131, 0.37);">
+                <label for="sel1">Trans ID: </label>
+              </div>
+              <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px">
+                <select class="form-control form-control-sm" id="sel2">
                     <option>Withdraw</option>
                     <option>Deposit</option>
                     <option>T03</option>
                     <option>T04</option>
               </select>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 3px">
-              <label for="sel1">Bank ID: </label>
-            </div>
-            <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
-              <select class="form-control form-control-sm" id="sel3">
+            <div class="row">
+              <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 3px">
+                <label for="sel1">Bank ID: </label>
+              </div>
+              <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
+                <select class="form-control form-control-sm" id="sel3">
                       <option>Republic Bank</option>
                       <option>Scotia Bank</option>
                       <option>First Citizens</option>
                 </select>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 2px">
-              <label for="sel1">Amount: </label>
-            </div>
-            <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
-              <select class="form-control form-control-sm" id="sel4">
+            <div class="row">
+              <div style="background-color:rgba(147, 60, 131, 0.37);padding-right: 2px">
+                <label for="sel1">Amount: </label>
+              </div>
+              <div class="col-md-6" style="background-color:rgba(198, 142, 147, 0.37);padding-left: 0px;padding-right: 0px;">
+                <select class="form-control form-control-sm" id="sel4">
                       <option>5</option>
                       <option>10</option>
                       <option>20</option>
@@ -108,51 +112,90 @@
                       <option>2000</option>
                       <option>4000</option>
                 </select>
+              </div>
             </div>
           </div>
+
+        </form>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="col-md-8" style="background-color:rgba(220, 226, 231, 0.51);">
+        <div class="bs-example">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Balance</th>
+                <th>Bank Branch </th>
+              </tr>
+            </thead>
+            <tbody class="transactions">
+              <tr>
+                <td>David</td>
+                <td>100</td>
+                <td>gdfg</td>
+
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Peter</td>
+                <td>Parker</td>
+
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>John</td>
+                <td>Rambo</td>
+
+              </tr>
+              <div id="socktest"></div>
+            </tbody>
+          </table>
+
+
         </div>
-        
-      </form>
-      <button type="button" class="btn btn-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-md-8" style="background-color:rgba(220, 226, 231, 0.51);">
-      <div class="bs-example">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Customer</th>
-            <th>Balance</th>
-            <th>Bank Branch </th>
-          </tr>
-        </thead>
-        <tbody class="transactions">
-          <tr >
-            <td>David</td>
-            <td>100</td>
-             <td>gdfg</td>
 
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Peter</td>
-            <td>Parker</td>
 
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>John</td>
-            <td>Rambo</td>
-
-          </tr>
-        </tbody>
-      </table>
-     
-     
-    </div>
   </div>
-  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    var socket = io.connect('http://' + document.domain + ':' + location.port)
+    // broadcast a message
+    socket.on('connect', function ()
+    {
+      socket.emit('my event', {data: 'User Connected'})
 
-  
-</div>
+      $("button").click(function (event) 
+      {
+        event.preventDefault()
+          var user = $("#sel1 option:selected").text();
+          var trans = $("#sel2 option:selected").text();
+          var bank = $("#sel3 option:selected").text();
+          var amount = $("#sel4 option:selected").text();
+          var transtime = event.timeStamp;
+          var data = { "user": user, "trans": trans, "bank": bank, "amount": amount };
+          socket.emit('my event', {
+            user_name : "user",
+            message : "bank"
+          } )
+      });
+    })
+
+    // capture message
+    socket.on('my response', function (msg) {
+      console.log(msg)
+      if (typeof msg.user_name !== 'undefined') {
+        // $('h1').remove()
+        $('div.socktest').append('<tr> <td>Sock</td> <td>Sock</td> <td>Sock</td> </tr>')
+      }
+    })
+    })
+  </script>
+
+</body>
 
 </html>

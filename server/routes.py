@@ -1,6 +1,6 @@
 import jndcontrollers
-from app import app
-from flask import Flask,request, jsonify, make_response, render_template
+from app import app,  socketio, render_template
+from flask import Flask,request, jsonify, make_response
 import requests
 import maincontroller
 
@@ -34,8 +34,14 @@ def getonetrans():
         result=jnd.createTransaction(request)
         val = jnd.getTransaction(request)
         return result
-    
 
+def messageRecived():
+  print 'message was received!!!' 
+
+@socketio.on( 'my event' )
+def handle_my_custom_event( json ):
+  print 'recived my event: ' + str( json )
+  socketio.emit( 'my response', json, callback=messageRecived )
 
 
 

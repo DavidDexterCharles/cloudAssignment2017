@@ -10,7 +10,7 @@
 
 ## Build Instructions
 
-### The following below has to be done because the version of the sdk in the docs is not the same as the latest version
+##### The following below has to be done because the version of the sdk in the docs is not the same as the latest version
 
 * Check the version of azure using pip:
     * ```pip freeze```
@@ -23,6 +23,10 @@
 * [No module named azure.common](https://github.com/Azure/blobxfer/issues/25), please run both of the following commands below (yes they are duplicates)
     * ```sudo pip install --upgrade --force-reinstall blobxfer```
     * ```sudo pip install --upgrade --force-reinstall blobxfer```
+* Other dependencies:
+    * pip install flask
+    * pip install flask-socketio
+    * pip install eventlet
 
 * Run the app
     * ```python app.py```
