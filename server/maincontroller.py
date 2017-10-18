@@ -1,6 +1,6 @@
-from jndcontrollers import UserJndController
+from jndcontrollers import UserJndController,WriteController
 
-class MainController(UserJndController):
+class MainController(UserJndController,WriteController):
 
     def __init__(self):
         pass

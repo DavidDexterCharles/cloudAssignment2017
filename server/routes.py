@@ -1,6 +1,6 @@
 import jndcontrollers
 from app import app
-from flask import request, jsonify, make_response
+from flask import Flask,request, jsonify, make_response, render_template
 import requests
 import maincontroller
 
@@ -17,14 +17,22 @@ def after_request(response):
 
 @app.route('/')
 def index():
-    return "apples"
+    return render_template('app.html')
     # try:
     #     return requests.get('https://github.com/DavidDexterCharles?tab=repositories').content#, headers=headers).content
     # except:
     #     return "Welcome To JND(Rapid API Development with JSONERD Automation)"
 
 
-
+@app.route('/transaction',methods=['GET', 'POST'])
+def getonetrans():
+    if request.method == 'GET':
+         return jsonify({"name":"Lord Of The Rings","type":"Adventure"},{"name":"Dishonored","type":"Stealth"})
+    if request.method == 'POST':
+        # print request.data
+        # return request.data
+        return jnd.createTransaction(request)
+    
 
 
 

@@ -11,9 +11,13 @@ headers = {'Content-Type': 'application/vnd.api+json'}
 # apidomain = 'http://127.0.0.1:8085/api/'
 
 
-
-
-
 class UserJndController(object):
     pass
-   
+
+class WriteController(object):
+    
+    def createTransaction(self,request):
+        data = json.dumps(request.get_json())
+        d = json.loads(data)
+        d['transtime']=str(datetime.datetime.utcnow())
+        return json.dumps(d)
