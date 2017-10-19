@@ -121,7 +121,7 @@
       </div>
       <div class="col-md-8" style="background-color:rgba(220, 226, 231, 0.51);">
         <div class="bs-example">
-          <table class="table table-hover">
+          <table id="myTable" class="table table-hover">
             <thead>
               <tr>
                 <th>Customer</th>
@@ -148,7 +148,6 @@
                 <td>Rambo</td>
 
               </tr>
-              <div class="socktest"></div>
             </tbody>
           </table>
 
@@ -186,8 +185,26 @@
     socket.on('my response', function (data) {
       console.log(data)
       if (typeof data.user !== 'undefined') {
-        // $('h1').remove()
-        $('div.socktest').append('<tr> <td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td> </tr>')
+        //  $('h1').remove()
+        // $('div.socktest').replaceWith('<td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td>')
+
+        $('#myTable tbody').empty();
+        var array = [
+            {amount: "5", trans: "Withdraw", user: "U1001", bank: "Republic Bank"},
+            {amount: "5", trans: "Deposit", user: "U4001", bank: "Republic Bank"}
+          ];
+              
+          $.each(array, function( key, value ) {
+            console.log('caste: ' + value.caste + ' | id: ' +value.id);
+              $('#myTable tbody').append('<tr><td>'+value.user+'</td> <td>'+value.bank+'</td> <td>'+value.amount+'</td></tr>');
+            }
+
+          );
+
+
+        // $('#myTable tbody').empty();
+        // $('#myTable tbody').append('<tr><td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td></tr>');
+
       }
     })
     })

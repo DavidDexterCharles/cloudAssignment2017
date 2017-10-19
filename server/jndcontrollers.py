@@ -54,7 +54,7 @@ class ReadController(object):
                 amt-=int(t.amount)
             if t.trans=="Deposit": 
                 amt+=int(t.amount)
-            print t.user,t.bank,t.transtime,t.trans, t.amount ,amt
+            # print t.user,t.bank,t.transtime,t.trans, t.amount ,amt
         m= json.loads(json.dumps({'customer' : user,'bank':bank,'balance':str(amt)}))
         m['PartitionKey']=str(user)
         m['RowKey']=str(bank)
