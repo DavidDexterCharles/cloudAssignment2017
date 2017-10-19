@@ -46,6 +46,8 @@ def handle_my_custom_event( data ):
     data2= requests.post('http://localhost:8082/transaction', data1, headers=headers).content
     
     #   print json.loads(data)
+    data3 = jnd.populateClientView()
+    print data3
     socketio.emit( 'my response', data, callback=messageRecived )
 
 
