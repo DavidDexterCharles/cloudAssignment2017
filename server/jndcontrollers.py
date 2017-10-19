@@ -47,7 +47,7 @@ class ReadController(object):
         theview = []
         tasks = table_service.query_entities('materializedview')
         for task in tasks:
-            theview.append({'customer':task.customer, 'bank' : task.bank, 'balance' : task.balance})
+            theview.append({'user':task.customer, 'bank' : task.bank, 'balance' : task.balance})
         return json.dumps(theview)
 
     def doreplay(self,transactions): # replay and update user information for respective bank only in the materialized view

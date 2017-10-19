@@ -41,14 +41,14 @@ def messageRecived():
 
 @socketio.on( 'my event' )
 def handle_my_custom_event( data ):
-    print 'recived my event: ' + json.dumps(data )
+    # print 'recived my event: ' + json.dumps(data )
     data1 = json.dumps(data )
     data2= requests.post('http://localhost:8082/transaction', data1, headers=headers).content
     
     #   print json.loads(data)
     data3 = jnd.populateClientView()
-    print data3
-    socketio.emit( 'my response', data, callback=messageRecived )
+    # print data3
+    socketio.emit( 'my response', data3, callback=messageRecived )
 
 
 

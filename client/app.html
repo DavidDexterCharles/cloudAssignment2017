@@ -131,22 +131,9 @@
             </thead>
             <tbody class="transactions">
               <tr>
-                <td>David</td>
-                <td>100</td>
-                <td>gdfg</td>
-
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Peter</td>
-                <td>Parker</td>
-
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>John</td>
-                <td>Rambo</td>
-
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -183,29 +170,58 @@
 
     // capture message
     socket.on('my response', function (data) {
-      console.log(data)
-      if (typeof data.user !== 'undefined') {
-        //  $('h1').remove()
-        // $('div.socktest').replaceWith('<td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td>')
+      $('#myTable tbody').empty();
+      data = JSON.parse(data);
+      data.forEach(function(value) {
+          // console.log(value);
+              if (value.user !== undefined) {
+                $('#myTable tbody').append('<tr><td>'+value.user+'</td> <td>'+value.bank+'</td> <td>'+value.balance+'</td></tr>');
+              }
+      });
+          // $.each(data, function( key, value ) {
+          //   console.log(value.user)
+        
+          // });
 
-        $('#myTable tbody').empty();
-        var array = [
-            {amount: "5", trans: "Withdraw", user: "U1001", bank: "Republic Bank"},
-            {amount: "5", trans: "Deposit", user: "U4001", bank: "Republic Bank"}
-          ];
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // if (typeof data.user !== 'undefined') {
+      //   //  $('h1').remove()
+      //   // $('div.socktest').replaceWith('<td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td>')
+
+      //   $('#myTable tbody').empty();
+      //   var array = [
+      //       {amount: "5", trans: "Withdraw", user: "U1001", bank: "Republic Bank"},
+      //       {amount: "5", trans: "Deposit", user: "U4001", bank: "Republic Bank"}
+      //     ];
               
-          $.each(array, function( key, value ) {
-            console.log('caste: ' + value.caste + ' | id: ' +value.id);
-              $('#myTable tbody').append('<tr><td>'+value.user+'</td> <td>'+value.bank+'</td> <td>'+value.amount+'</td></tr>');
-            }
+      //     $.each(array, function( key, value ) {
+      //       console.log('caste: ' + value.caste + ' | id: ' +value.id);
+      //         $('#myTable tbody').append('<tr><td>'+value.user+'</td> <td>'+value.bank+'</td> <td>'+value.amount+'</td></tr>');
+      //       }
 
-          );
+      //     );
 
 
-        // $('#myTable tbody').empty();
-        // $('#myTable tbody').append('<tr><td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td></tr>');
+      //   // $('#myTable tbody').empty();
+      //   // $('#myTable tbody').append('<tr><td>'+data.user+'</td> <td>'+data.bank+'</td> <td>'+data.amount+'</td></tr>');
 
-      }
+      // }
     })
     })
   </script>
