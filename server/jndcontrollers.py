@@ -44,15 +44,7 @@ class ReadController(object):
         transactions = table_service.query_entities('evenstore', filter=" bank eq '"+d['bank']+"' and PartitionKey eq '"+d['user']+"'") # returns a set of trasactions fro a particular user and bank
         self.doreplay(transactions)
         return "app"
-    
-
-    def populateClientView(self):
-        theview = []
-        tasks = table_service.query_entities('materializedview')
-        for task in tasks:
-            theview.append({'user':task.customer, 'bank' : task.bank, 'balance' : task.balance})
-        return json.dumps(theview)
-
+   
     def doreplay(self,transactions): # replay and update user information for respective bank only in the materialized view
         i=0
         for t in transactions:
@@ -70,5 +62,14 @@ class ReadController(object):
         m['PartitionKey']=str(user)
         m['RowKey']=str(bank)
         table_service.insert_or_replace_entity('materializedview', m)
+
+     
+
+    def populateClientView(self):
+        theview = []
+        tasks = table_service.query_entities('materializedview')
+        for task in tasks:
+            theview.append({'user':task.customer, 'bank' : task.bank, 'balance' : task.balance})
+        return json.dumps(theview)
         
           

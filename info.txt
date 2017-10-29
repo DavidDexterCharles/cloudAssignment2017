@@ -1,4 +1,3 @@
-a refresh button to refresh the page
 
 https://angular.io/guide/quickstart
 

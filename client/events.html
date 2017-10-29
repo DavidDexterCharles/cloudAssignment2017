@@ -139,8 +139,8 @@
             // broadcast a message
             $('#loader').show();
             socket.on('connect', function () {
-                
-                 socket.emit('get event', { data: '' });
+
+                socket.emit('get event', { data: '' });
             })
 
             // capture message
@@ -152,7 +152,7 @@
 
                     if (value.PartitionKey !== undefined) {
                         // $('#myTable tbody').append('<tr><td>Apples</td></tr>');
-                        $('#myTable tbody').append('<tr> <td>' + value.PartitionKey + '</td> <td>' + value.RowKey + '</td> <td>' + value.User + '</td> <td>' + '</td> <td>' + value.Bank + '</td> <td>' + value.Transaction + '</td> <td>' + value.Amount + '</td></tr>');
+                        $('#myTable tbody').append('<tr> <td>' + value.PartitionKey + '</td> <td>' + value.RowKey + '</td> <td>' + value.User + '</td> <td>' + value.Bank + '</td> <td>' + value.Transaction + '</td> <td>' + value.Amount + '</td></tr>');
                         $('#loader').hide();
                     }
                 });
