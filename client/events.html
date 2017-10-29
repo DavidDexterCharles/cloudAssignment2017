@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Event Sourcing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> -->
+
+    <style>
+        /* Center the loader */
+
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border-radius: 50%;
+            border-top: 16px solid blue;
+            border-right: 16px solid green;
+            border-bottom: 16px solid red;
+            border-left: 16px solid #220F2A;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Add animation to "page content" */
+
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+        #myDiv {
+            display: none;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+    <!-- The content below is only a placeholder and can be replaced. -->
+    <div class="container">
+        <div>
+            <h5>
+                Cloud Assignment 2
+            </h5>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12" style="background-color:rgba(220, 226, 231, 0.51);">
+                <div class="bs-example">
+                    <table id="myTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Partition Key</th>
+                                <th>Row Key </th>
+                                <th>User</th>
+                                <th>Bank</th>
+                                <th>Transaction</th>
+                                <th>Amount </th>
+                            </tr>
+                        </thead>
+                        <tbody class="events">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="loader" style="display:none"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var socket = io.connect('http://' + document.domain + ':' + location.port)
+            // broadcast a message
+            $('#loader').show();
+            socket.on('connect', function () {
+                
+                 socket.emit('get event', { data: '' });
+            })
+
+            // capture message
+            socket.on('getevent response', function (data) {
+                $('#myTable tbody').empty();
+                data = JSON.parse(data);
+                data.forEach(function (value) {
+                    //  console.log(value);
+
+                    if (value.PartitionKey !== undefined) {
+                        // $('#myTable tbody').append('<tr><td>Apples</td></tr>');
+                        $('#myTable tbody').append('<tr> <td>' + value.PartitionKey + '</td> <td>' + value.RowKey + '</td> <td>' + value.User + '</td> <td>' + '</td> <td>' + value.Bank + '</td> <td>' + value.Transaction + '</td> <td>' + value.Amount + '</td></tr>');
+                        $('#loader').hide();
+                    }
+                });
+
+            })
+        })
+    </script>
+
+</body>
+
+</html>

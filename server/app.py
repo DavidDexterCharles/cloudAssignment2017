@@ -2,7 +2,7 @@ import os
 from flask import Flask,render_template
 from flask_socketio import SocketIO, emit
 app = Flask(__name__,template_folder='../client')
-app.config[ 'SECRET_KEY' ] = 'jsbcfsbfjefebw237u3gdbdc'
+
 
 socketio = SocketIO( app )
 from routes import *

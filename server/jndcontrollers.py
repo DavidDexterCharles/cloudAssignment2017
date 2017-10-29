@@ -1,15 +1,12 @@
 import uuid
 import datetime
 from functools import wraps
-# import jwt
 from flask import Flask, request, jsonify, make_response
 from azure.cosmosdb.table import TableService, Entity
 import requests
 import simplejson as json #https://simplejson.readthedocs.io/en/latest/
-# from werkzeug.security import generate_password_hash, check_password_hash
-# from models import app, User
 headers = {'Content-Type': 'application/vnd.api+json'}
-# apidomain = 'http://127.0.0.1:8085/api/'
+
 
 table_service = TableService(account_name='comp69052017a216', account_key='6pWXbN/82hhsCKEcHEXdl0j5mxFcK6+lple/wYU29Jcb+kB55N/gAUuAd2PfL3mx67WxzJ8QxqhXbV5QdBG7iw==')
 
@@ -30,12 +27,18 @@ class WriteController(object):
         d['RowKey']=d['transtime']
         transaction = d
         table_service.insert_entity('evenstore', transaction)
-        # return "fish"
         return json.dumps(d)
+
+    def getEventStore(self):
+        theevents = []
+        tasks = table_service.query_entities('evenstore')
+        for task in tasks:
+            theevents.append({'PartitionKey':task.PartitionKey, 'RowKey' : task.RowKey,'User' : task.user,'Bank' : task.bank,'Transaction' : task.trans,'Amount' : task.amount, 'TransTime' : task.transtime})
+        return json.dumps(theevents)
 
 class ReadController(object):
    
-    def getTransaction(self,request):
+    def updateView(self,request):
         data = json.dumps(request.get_json())
         d = json.loads(data)
         transactions = table_service.query_entities('evenstore', filter=" bank eq '"+d['bank']+"' and PartitionKey eq '"+d['user']+"'") # returns a set of trasactions fro a particular user and bank

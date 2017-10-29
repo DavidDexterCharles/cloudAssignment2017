@@ -19,11 +19,11 @@ def after_request(response):
 @app.route('/')
 def index():
     return render_template('app.html')
-    # try:
-    #     return requests.get('https://github.com/DavidDexterCharles?tab=repositories').content#, headers=headers).content
-    # except:
-    #     return "Welcome To JND(Rapid API Development with JSONERD Automation)"
-
+   
+@app.route('/events')
+def getEvents():
+    return render_template('events.html')
+    # return render_template('app.html')
 
 @app.route('/transaction',methods=['GET', 'POST'])
 def getonetrans():
@@ -33,7 +33,7 @@ def getonetrans():
         # print request.data
         # return request.data
         result=jnd.createTransaction(request)
-        val = jnd.getTransaction(request)
+        val = jnd.updateView(request)
         return result
 
 def messageRecived():
@@ -43,51 +43,14 @@ def messageRecived():
 def handle_my_custom_event( data ):
     # print 'recived my event: ' + json.dumps(data )
     data1 = json.dumps(data )
-    data2= requests.post('http://localhost:8082/transaction', data1, headers=headers).content
-    
+    data2= requests.post('http://localhost:8082/transaction', data1, headers=headers).content 
     #   print json.loads(data)
     data3 = jnd.populateClientView()
     # print data3
     socketio.emit( 'my response', data3, callback=messageRecived )
 
 
-
-'''
-@app.route('/userauth', methods=['GET'])
-@token_required
-def getall_users_tokenrequired(current_user):
-    # if jnd.isadmin(current_user):
-    return jnd.getallusers()
-    # else:
-        # return jsonify({'message' : 'Cannot perform that function!'})
-
-@app.route('/register', methods=['POST'])
-def register_user():
-    return jnd.doregister(request)
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    return jnd.dologin(request)
-
-
-
-#*****************************User***************************************
-
-@app.route('/user', methods=['GET'])
-def getall_users():
-    return jnd.getallusers()
-@app.route('/user/<id>', methods=['GET'])
-def get_one_user(id):
-    return jnd.getbyiduser(id)
-@app.route('/user', methods=['POST'])
-def create_user():
-    return jnd.createuser(request)
-@app.route('/user/<id>', methods=['PATCH'])
-def update_user():
-    return jnd.updateuser(request)
-@app.route('/user', methods=['DELETE'])
-def delete_user(id):
-    return jnd.deleteuser(request)
-
-
-'''
-
+@socketio.on( 'get event')
+def handle_my_eventstore_events( data ):
+    data= jnd.getEventStore() 
+    socketio.emit( 'getevent response', data, callback=messageRecived )
