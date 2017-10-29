@@ -8,6 +8,8 @@
 
 3.Customer
 
+4.Time
+
 ## Build Instructions
 
 ##### The following below has to be done because the version of the sdk in the docs is not the same as the latest version
