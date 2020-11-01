@@ -8,7 +8,7 @@ import simplejson as json #https://simplejson.readthedocs.io/en/latest/
 headers = {'Content-Type': 'application/vnd.api+json'}
 
 
-table_service = TableService(account_name='comp69052017a216', account_key='6pWXbN/82hhsCKEcHEXdl0j5mxFcK6+lple/wYU29Jcb+kB55N/gAUuAd2PfL3mx67WxzJ8QxqhXbV5QdBG7iw==')
+table_service = TableService(account_name='comp69052017a216', account_key='')
 
 table_service.create_table('evenstore') 
 table_service.create_table('materializedview') 
